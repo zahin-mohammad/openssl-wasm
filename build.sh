@@ -29,3 +29,8 @@ cd openssl-3.1.0
 wasiconfigure ./Configure gcc -no-tests -no-asm -static -no-sock -no-afalgeng -DOPENSSL_SYS_NETWARE -DSIG_DFL=0 -DSIG_IGN=0 -DHAVE_FORK=0 -DOPENSSL_NO_AFALGENG=1 --with-rand-seed=getrandom
 sed -i 's/^CROSS_COMPILE=.*/CROSS_COMPILE=/g' Makefile
 wasimake make
+
+cd ../
+cp openssl-3.1.0/apps/openssl.wasm ./openssl.wasm
+npm i
+npx wasm2js openssl.wasm -o opensslbytes.js
